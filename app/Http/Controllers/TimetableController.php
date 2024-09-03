@@ -134,4 +134,31 @@ class TimetableController extends Controller
     }
 
 
+    public function sectionTimeTable(request $request, $sectionId){
+        // Fetch the teacher by ID
+    $section = section::findOrFail($sectionId);
+
+    // Fetch all timetable entries for this teacher
+    $timetables = Timetable::where('section_id', $sectionId)->get();
+
+    // Define the time slots (you can customize this based on your schedule)
+    $timeSlots = [
+        '09:00 - 10:30',
+        '10:45 - 12:15',
+        '12:30 - 14:00',
+        '14:00 - 15:30',
+        '15:45 - 16:15',
+    ];
+
+    // Initialize an empty array to hold the schedule data
+    $schedule = [];
+
+    // Populate the schedule array with the timetable data
+    foreach ($timetables as $timetable) {
+        $schedule[$timetable->timing][$timetable->day] = $timetable;
+    }
+        return view('admin.sectionTimetable', compact('schedule', 'timeSlots', 'section'));
+    }
+
+
 }

@@ -126,14 +126,6 @@
                                         <i class="bx bx-trash-alt font-size-18"></i>
                                     </button>
                                 </form>
-                                <li class="list-inline-item dropdown">
-                                    <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i class="bx bx-dots-vertical-rounded"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </li>
                             </ul>
                         </td>
                     </tr>

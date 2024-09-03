@@ -181,6 +181,7 @@ h2 {
                     <th scope="col"></th>
                     <th scope="col">Class</th>
                     <th scope="col">Students</th>
+                    <th scope="col">Time Table</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -197,9 +198,13 @@ h2 {
                         </form>
                     </td>
                     <td>
+                        <a href="{{ route('sectionTimeTable', $class->id) }}">{{ $class->name }} Time Table</a>
+                    </td>
+
+                    <td>
                         <!-- Edit Form with Icon -->
                         <form action="{{ route('class_edit_form', $class->id) }}" style="display:inline;">
-                            <button type="submit" style="background: none; border: none;">
+                            <button type="submit" style="background: none; border: none;" href="hh">
                                 <i class="fas fa-edit edit-icon"></i>
                             </button>
                         </form>

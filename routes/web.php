@@ -58,6 +58,9 @@ Route::middleware([auth::class, admin::class])->group(function(){
     Route::get('/timetable/confirmation', function () {
         return view('admin.timeTableConfirmation');
     })->name('timetable.confirmation');
+
+    Route::get('/adminhome/classes_list/timetable/{id}', [App\Http\Controllers\TimetableController::class, 'sectionTimeTable'])
+    ->name('sectionTimeTable');
     
     Route::post('/timetable/update-existing', [App\Http\Controllers\TimetableController::class, 'updateExisting'])
     ->name('timetable.updateExisting');
