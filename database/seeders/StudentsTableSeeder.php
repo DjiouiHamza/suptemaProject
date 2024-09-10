@@ -19,11 +19,11 @@ class StudentsTableSeeder extends Seeder
         $faker = Faker::create();
 
         // Find the Telecom S3 section
-        $section = Section::where('name', 'telecom s3')->first();
+        $section = Section::where('name', 'Managemant S1')->first();
 
         if ($section) {
             // Create 20 random students and assign them to the Telecom S3 section
-            for ($i = 0; $i < 32; $i++) {
+            for ($i = 0; $i < 42; $i++) {
                 Student::create([
                     'full_name' => $faker->name,
                     'email' => $faker->unique()->safeEmail,

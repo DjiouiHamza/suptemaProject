@@ -6,7 +6,7 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href={{ asset('css/studentsList.css')}}> 
-
+<title>Teachers List</title>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -44,8 +44,7 @@
                         <tbody>
                             <tr>
                                 
-                                <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" 
-                                class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">{{$user->name}}</a></td>
+                                <td><a class="text-body">{{$user->name}}</a></td>
 
                                
                                 <td>{{$user->email}}</td>
@@ -58,7 +57,7 @@
                                         
                                     <form action="{{route('teacher.update.form',$user->id)}}" method="get" style="display:inline-block">
                                         @csrf
-                                        <button type="submit" class="px-2 text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" style="border: none; background: none;">
+                                        <button type="submit" class="px-2 text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" style="border: none; background: none;">
                                         <i class="bx bx-pencil font-size-18"></i>
                                         </button>
                                         </form>
@@ -74,8 +73,8 @@
 
                                         <li class="list-inline-item dropdown">
                                             <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i class="bx bx-dots-vertical-rounded"></i></a>
-                                            <form action="{{route('editTimeTable', $user->id)}}" method="POST"> 
-                                            @csrf
+                                            <form action="{{route('editTimeTable', $user->id)}}"> 
+                                            
                                             <div class="dropdown-menu dropdown-menu-end">
                                                 <button type="submit" class="dropdown-item">
                                                     <a class="dropdown-item">time table</a>
@@ -188,7 +187,8 @@
                                 <th scope="col" style="width: 200px;">
                                 <div class="col-auto">
     <input data-mdb-ripple-init type="submit" class="btn btn-primary" value="add new teacher">
-  </div></th>
+  </div>
+</th>
                             </tr>
                         </thead>
                     </table>

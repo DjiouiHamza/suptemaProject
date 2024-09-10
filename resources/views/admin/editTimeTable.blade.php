@@ -43,7 +43,10 @@
 
 
             <div class="container">
-    <h2 class="text-center my-4">Timetable</h2>
+                <div class="text-center my-4">
+    <h2 >Timetable for {{ $teacher->name }}</h2>
+    <h5 >Click any class to <span style="color: red;">delete</span> it!</h5>
+    </div>
     <table class="table timetable-table">
         <thead>
             <tr>
@@ -64,9 +67,20 @@
                     @foreach(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as $day)
                         <td>
                             @if(isset($schedule[$time][$day]))
-                                {{ $schedule[$time][$day]->section->name }}<br>
-                                {{ $schedule[$time][$day]->teacher->name }}<br>
+                            <form action="{{ route('deleteTimetable', [
+    $schedule[$time][$day]->section->id,
+    $schedule[$time][$day]->teacher->id,
+    $schedule[$time][$day]->class_name,
+    $schedule[$time][$day]->day,
+    $schedule[$time][$day]->timing,
+]) }}" class="clickable-class" method="POST">
+@method('DELETE')
+@csrf
+<button type="submit" class="btn btn-danger btn-block" style="width: 100%; font-size: 14px; padding: 10px; margin: 5px 0;">
+<strong>{{ $schedule[$time][$day]->section->name }}</strong><br>
                                 {{ $schedule[$time][$day]->class_name }}
+                                </button>
+                                </form>
                             @else
                                 -
                             @endif
@@ -76,6 +90,11 @@
             @endforeach
         </tbody>
     </table>
+    @if (session('deleted'))
+    <div class = "alert alert-danger">
+        {{session('deleted')}}
+    </div>
+    @endif
 </div>
 
 </body>

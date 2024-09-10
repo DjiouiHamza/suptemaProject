@@ -1,4 +1,7 @@
 @extends('layouts.app')
+<head>
+    <title>Changes Confirmation</title>
+</head>
 
 @php
 $existingClassName = session('existing_class_name');

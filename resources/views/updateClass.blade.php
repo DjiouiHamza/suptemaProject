@@ -32,15 +32,20 @@
                 </div>
             @endif
 
-            <div class="col-md-6">
-                <div class="form-outline">
-                    <label for="class_Name" class="form-label">Class Name</label>
+            <!-- Horizontal Form Group -->
+            <div class="row mb-3">
+                <label for="class_Name" class="col-sm-2 col-form-label">Class Name</label>
+                <div class="col-sm-10">
                     <input type="text" id="class_Name" name="class_Name" class="form-control" placeholder="Name" value="{{ old('class_Name', $classes->name) }}" />
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Update</button>
+            <div class="row mb-3">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <!-- Green Button for Return to List -->
+                    <a href="{{ route('classes_list') }}" class="btn btn-success ms-2">Return to the Sections List?</a>
+                </div>
             </div>
         </form>
     </div>

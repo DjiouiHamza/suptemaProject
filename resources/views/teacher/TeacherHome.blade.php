@@ -125,10 +125,10 @@
 					<div class="col-xxl-4">
 						<div class="bg-secondary-soft px-4 py-5 rounded">
 							<div class="row g-3">
-								<h4 class="mb-4 mt-0">Upload your profile photo</h4>
+								<h4 class="mb-4 mt-0"></h4>
 								<div class="text-center">
 									<!-- Image upload -->
-									<img src="{{ asset('upload/supLogo.jpg') }}" width="300" height="300" >
+									<img src="{{ asset('upload/Logo.png') }}" width="300" height="300" >
 									<!-- Button -->
 									<input type="file" id="customFile" name="file" hidden="">
 									<!-- <label class="btn btn-success-soft btn-block" for="customFile">Upload</label>

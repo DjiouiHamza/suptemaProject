@@ -4,7 +4,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href={{ asset('css/style.css')}}> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
-
+<title>Creat Time-Table</title>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
@@ -109,7 +109,7 @@ table.timetable-table tr:hover td {
     </div>
 
     <div class="form-group">
-        <label for="class_name">Class Name:</label>
+        <label for="class_name">Subject Name:</label>
         <input type="text" name="class_name" id="class_name" class="form-control" required>
     </div>
 
@@ -135,8 +135,7 @@ table.timetable-table tr:hover td {
             <option value="15:45 - 16:15">15:45 - 16:15</option>
         </select>
     </div>
-   
-    <button type="submit" class="btn btn-primary">Save Timetable</button>
+    <button type="submit" class="btn btn-primary">Add a Session</button>
 </form>
 @if ($errors->has('duplicate'))
     <div class="alert alert-danger">

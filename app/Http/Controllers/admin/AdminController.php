@@ -119,7 +119,7 @@ class AdminController extends Controller
         ->orderBy('day', 'desc')
         ->orderBy('timeslot_id', 'asc') // Sort by time slot in ascending order
         ->select('absences.*')
-        ->get();
+        ->paginate(100);
 
         // Fetch data for filters
         $sections = Section::all();
@@ -197,9 +197,10 @@ public function class_update(Request $request, $id) {
 public function class_delete($id){
 
     $classes = section::findOrFail($id);
+    $theClass = section::where('id', $id)->first()->name;
     $classes->delete();
 
-    return redirect()->back()->with('deleted' , 'Class deleted!!');
+    return redirect()->back()->with('deleted' ,'"' . $theClass . '" deleted!!');
 
 }
     
@@ -240,7 +241,7 @@ public function deleteStudent($id){
     $students = student::findOrFail($id);
     $students->delete();
 
-    return redirect()->back();
+    return redirect()->back()->with('deleted', 'Student deleted!');
 
 }
 
@@ -277,7 +278,7 @@ public function updateStudent(Request $request, $id) {
         'section_id' => $inputs['studentSection'],
     ]);
 
-     return redirect()->back()->with('udated' , 'student updated succesfully');
+     return redirect()->back()->with('updated' , 'student updated succesfully');
 }
 
 

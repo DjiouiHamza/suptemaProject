@@ -32,6 +32,27 @@
         .timetable-table tr:hover {
             background-color: #f1f1f1;
         }
+        
+        /* Flexbox for aligning the button at the bottom right */
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .btn-back {
+            background-color: #28a745;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
@@ -58,9 +79,8 @@
                         @foreach(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as $day)
                             <td>
                                 @if(isset($schedule[$time][$day]))
-                                    {{ $schedule[$time][$day]->section->name }}<br>
                                     {{ $schedule[$time][$day]->teacher->name }}<br>
-                                    {{ $schedule[$time][$day]->class_name }}
+                                    "{{ $schedule[$time][$day]->class_name }}"
                                 @else
                                     -
                                 @endif
@@ -70,6 +90,11 @@
                 @endforeach
             </tbody>
         </table>
+
+        <!-- Button aligned at the bottom right of the table -->
+        <div class="button-container">
+            <a href="{{ route('classes_list') }}" class="btn-back">Return to the Sections List</a>
+        </div>
     </div>
 
 </body>

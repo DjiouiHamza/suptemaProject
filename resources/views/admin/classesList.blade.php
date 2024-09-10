@@ -179,9 +179,9 @@ h2 {
             <thead>
                 <tr>
                     <th scope="col"></th>
-                    <th scope="col">Class</th>
-                    <th scope="col">Students</th>
-                    <th scope="col">Time Table</th>
+                    <th scope="col">Class Name</th>
+                    <th scope="col">Students Count</th>
+                    <th scope="col">Time-Table</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -204,7 +204,7 @@ h2 {
                     <td>
                         <!-- Edit Form with Icon -->
                         <form action="{{ route('class_edit_form', $class->id) }}" style="display:inline;">
-                            <button type="submit" style="background: none; border: none;" href="hh">
+                            <button type="submit" style="background: none; border: none;" title="Edit">
                                 <i class="fas fa-edit edit-icon"></i>
                             </button>
                         </form>
@@ -213,7 +213,7 @@ h2 {
                         <form action="{{ route('class_delete', $class->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" style="background: none; border: none;">
+                            <button type="submit" style="background: none; border: none;" title="Delete">
                                 <i class="fas fa-trash-alt delete-icon"></i>
                             </button>
                         </form>
@@ -225,12 +225,7 @@ h2 {
     </div>
 
     <div class="centered-form-container">
-        <div class="form-container">
-            <h3>Add New Section</h3>
-            <form action="{{ route('store_classes') }}" method="post" style="display: flex; align-items: center; gap: 10px; width: 100%;">
-                @csrf
-
-                @if ($errors->any())
+    @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -239,6 +234,12 @@ h2 {
                     </ul>
                 </div>
                 @endif
+        <div class="form-container">
+            <h3>Add New Section</h3>
+            <form action="{{ route('store_classes') }}" method="post" style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                @csrf
+
+                
 
                 <input type="text" name="sectionName" class="form-control" placeholder="Enter section name" />
 

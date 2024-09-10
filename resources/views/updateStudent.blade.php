@@ -71,9 +71,10 @@
                     </select>
                 </div>
             </div>
-
+           
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{{ route('students_list') }}" class="btn btn-success ms-2">Return to the Students List?</a>
             </div>
         </form>
     </div>

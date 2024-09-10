@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\section;
 use App\Models\timetable;
+use App\Models\timeslot;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -47,19 +48,20 @@ class TimetableController extends Controller
 
         // Check if a record with the same teacher, timing, and day already exists but different class name/section
     $existingTimetable = Timetable::where([
-        ['teacher_id', '=', $request->teacher_id],
         ['day', '=', $request->day],
         ['timing', '=', $request->timing],
     ])->first();
 
-    if ($existingTimetable && ($existingTimetable->class_name != $request->class_name || $existingTimetable->section_id != $request->section_id)) {
+    if ($existingTimetable && ($existingTimetable->class_name != $request->class_name || $existingTimetable->section_id != $request->section_id || $existingTimetable->teacher_id != $request->teacher_id)) {
         
         
         // Store data in session for confirmation
         session([
             'new_class_name' => $request->class_name,
             'new_section_id' => $request->section_id,
+            'new_teacher_id' => $request->teacher_id,
             'existing_class_name' => $existingTimetable->class_name,
+            'existing_teacher_id' => $existingTimetable->teacher_id,
             'existing_section_id' => $existingTimetable->section_id,
             'existing_timetable_id' => $existingTimetable->id,
         ]);
@@ -92,10 +94,11 @@ class TimetableController extends Controller
         $timetable->update([
             'class_name' => session('new_class_name'),
             'section_id' => session('new_section_id'),
+            'teacher_id' => session('new_teacher_id'),
         ]);
     
         // Clear session data
-        session()->forget(['new_class_name', 'new_section_id', 'existing_class_name', 'existing_section_id', 'existing_timetable_id']);
+        session()->forget(['new_class_name', 'new_section_id', 'new_teacher_id', 'existing_teacher_id', 'existing_class_name', 'existing_section_id', 'existing_timetable_id']);
     
         return redirect()->route('timetable.create')->with('success', 'Timetable updated successfully!');
     }
@@ -130,7 +133,7 @@ class TimetableController extends Controller
     foreach ($timetables as $timetable) {
         $schedule[$timetable->timing][$timetable->day] = $timetable;
     }
-        return view('admin.editTimeTable', compact('schedule', 'timeSlots'));
+        return view('admin.editTimeTable', compact('schedule', 'timeSlots', 'teacher'));
     }
 
 
@@ -159,6 +162,21 @@ class TimetableController extends Controller
     }
         return view('admin.sectionTimetable', compact('schedule', 'timeSlots', 'section'));
     }
+    
+    public function deleteTimetable($sectionId, $teacherId, $class, $day, $timing){
 
+        $section_id = section::where('id', $sectionId)->first()->id;
+        $teacher_id = user::where('id', $teacherId)->first()->id;
+        $time = timeslot::where('time', $timing)->first()->time;
+        $inputs = timetable::where('class_name', $class)
+                            ->where('section_id', $section_id)
+                            ->where('teacher_id', $teacher_id)
+                            ->where('day', $day)
+                            ->where('timing', $time)
+                            ->first();
+    $inputs -> delete();
+        return redirect()->back()->with('deleted' , 'Class "' . $class . '" deleted!!');
+    
+    }
 
 }

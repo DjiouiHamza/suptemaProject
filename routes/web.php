@@ -52,7 +52,7 @@ Route::middleware([auth::class, admin::class])->group(function(){
     Route::post('/adminhome/timetable/store', [App\Http\Controllers\TimetableController::class, 'store'])
     ->name('timetable.store');
 
-    Route::POST('/adminhome/timetable/{id}', [App\Http\Controllers\TimetableController::class, 'edit'])
+    Route::get('/adminhome/timetable/{id}', [App\Http\Controllers\TimetableController::class, 'edit'])
     ->name('editTimeTable');
 
     Route::get('/timetable/confirmation', function () {
@@ -65,6 +65,8 @@ Route::middleware([auth::class, admin::class])->group(function(){
     Route::post('/timetable/update-existing', [App\Http\Controllers\TimetableController::class, 'updateExisting'])
     ->name('timetable.updateExisting');
     
+    Route::DELETE('/adminhome/timetable/{sectionId}-{teacherId}-{class}-{day}-{timing}', [App\Http\Controllers\TimetableController::class, 'deleteTimetable'])
+    ->name('deleteTimetable');
 
     Route::get('/adminhome', [App\Http\Controllers\admin\AdminController::class, 'index'])
     ->name('AdminHome');

@@ -55,6 +55,8 @@
 
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{{ route('teachers_list') }}" class="btn btn-success ms-2">Return to the Teacher List?</a>
+
             </div>
         </form>
     </div>

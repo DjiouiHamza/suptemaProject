@@ -8,7 +8,7 @@
     
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
+<title>Absences List</title>
     <!-- Styles -->
     <style>
         /* Admin view styling */
@@ -135,6 +135,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$absences->links('vendor.pagination.bootstrap-4')}}
     </div>
 </body>
 </html>
